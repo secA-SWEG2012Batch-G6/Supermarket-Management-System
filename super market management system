@@ -1,0 +1,332 @@
+    #include<conio.h>
+    #include<string.h>
+    #include<iomanip>
+    #include<iostream>
+    //----End of the header file used in this program
+    
+     
+    using namespace std;
+    //----struct declaration for product  
+    struct product
+    {
+    	int pro_id;
+    	char product_name[20];
+    	float product_price,product_quantity,product_discount;
+    	
+    	
+    	
+};
+
+//-----Variable creation of structure
+  	void create_product(product[], int);
+  	void show_all_product(product[], int);
+	void edit_product(product[], int);  
+  	void insert_product(product[], int);
+	void search_product(product[],int); 
+  	void delete_product(product[], int); 
+  	int num;
+  	product pro[100];
+  	string here;
+  	
+    	void create_product(product pro[], int productCount)//--------A function to create a product list by administrator 
+    	{
+	    	cout<<"enter number of product: \n";
+	    	cin>>num;
+	    	productCount=num;
+    		for (int i=1; i<=productCount; i++){
+	    		pro[i].pro_id=i;
+	    		cout<<endl<<"Please Enter The Name of The Product "<<i<<": ";
+	    		cin>>pro[i].product_name;
+	    		cout<<endl<<"Please Enter The Price of The Product "<<i<<": ";
+	    		cin>>pro[i].product_price;
+	    		cout<<endl<<"Please Enter The Discount (%) "<<i<<": ";
+	    		cin>>pro[i].product_discount;
+	    		cout<<"\n=====================================================================\n";
+			}
+			
+		cout<<endl<<endl<<"The Product Has Been Sucessfully Created...";
+	}
+	
+    	
+    	void show_product(product pro[], int proCount) //--------A function to show the product created 
+    	{
+    		system("cls");
+	    	cout<<endl<<"\t\t*********************************************";
+	    	cout<<endl<<"\t\t DISPLAYING ALL RECORDS.";
+	    	cout<<endl<<"\t\t********************************************\n";
+	    	
+    		cout<<setw(20)<<"Product No"<<setw(20)<<"Product Name"<<setw(20)<<"Product Price"<<setw(15)<<"Discount\n";
+    		for (int i=1; i<=proCount; i++){
+	    		cout<<setw(20)<<pro[i].pro_id;
+	    		cout<<setw(20)<<pro[i].product_name;
+	    		cout<<setw(20)<<pro[i].product_price;
+	    		cout<<setw(15)<<pro[i].product_discount;
+	    		cout<<endl;
+    		}
+    	}
+    	
+
+    //-----A function to display all records  
+    
+   void edit_product(product pro[], int proCount)
+    {
+    	int id;
+    	bool found=false;
+    	system("cls");
+    	if(num==0){
+    		cout<<"There is no product to update....";
+		}
+		else {
+	    	cout<<endl<<endl<<"\tPlease Enter Id of the Product you want to edit: ";
+	    	cin>>id;	
+	    	for(int i=1; i<=proCount; i++){
+	    		if(pro[i].pro_id==id)
+		    		{
+		    			found=true;
+		    			
+		    			cout<<"product Id: "<<pro[i].pro_id<<endl;
+		    			cout<<"product Name: "<<pro[i].product_name<<endl;
+		    			cout<<"product Price: "<<pro[i].product_price<<endl;
+		    			cout<<"product discount: "<<pro[i].product_discount<<endl;
+		    			
+		    			cout<<"\nPlease Enter The New Details of Product: "<<endl;
+		    			
+		    			cout<<endl<<"Please Enter The Name of The Product "<<i<<": ";
+			    		cin>>pro[i].product_name;
+			    		cout<<endl<<"Please Enter The Price of The Product "<<i<<": ";
+			    		cin>>pro[i].product_price;
+			    		cout<<endl<<"Please Enter The Discount (%) "<<i<<": ";
+			    		cin>>pro[i].product_discount;
+			    		
+		    			int pos=-1*sizeof(pro);
+		    			cout<<endl<<endl<<"\t Record Successfully Updated...";
+		    		}
+				}
+	    	}
+    	if(found==false)
+    		cout<<endl<<endl<<"Record Not Found...";
+    	getchar();
+    }
+     
+     
+    /*void delete_product(product pro, int proCount)
+    {
+    	int num;
+    	system("cls");
+    	cout<<endl<<endl<<"Please Enter The product No: ";
+    	cin>>num;
+   	
+       	if(pro.pro_id!=num)
+    		{
+    	remove("getProduct");
+         	}
+		  cout<<endl<<endl<<"\tRecord Deleted...";
+    	getchar();
+    }*/
+    
+    void insert_Product(product pro[], int proCount) // ----------- Definition of a function to insert product information 
+   {
+	    system("cls");
+	    create_product( pro, proCount);
+         
+           cout<<endl<<endl<<"\t the product added Successfully Updated...";
+           
+ }
+
+
+ void search_productbyId(product pro[], int proCount)
+{
+	int id;
+	cout << "Enter Id:\n";
+	cin>>id;
+	for(int i=1;i<proCount;i++){
+	if(id==pro[i].pro_id){
+		
+		cout<<"product Name: "<<pro[i].product_name<<endl;
+		cout<<"product Price: "<<pro[i].product_price<<endl;
+		cout<<"product discount: "<<pro[i].product_discount<<endl;
+	}
+	else{
+		
+   		cout <<"product not found\n";		
+	}
+	
+}
+	
+ } 
+ void search_productbyName(product pro[], int proCount){
+ 	string name;
+	cout << "Enter Id:\n";
+	cin>>name;
+	for(int i=1;i<proCount;i++){
+	if(name==pro[i].product_name){
+		
+		cout<<"product Id: "<<pro[i].pro_id<<endl;
+		cout<<"product Name: "<<pro[i].product_name<<endl;
+		cout<<"product Price: "<<pro[i].product_price<<endl;
+		cout<<"product discount: "<<pro[i].product_discount<<endl;
+	}else 
+		
+   cout <<"product not found\n";	
+ 	
+ 	
+ }
+
+}
+    void product_menu(product pro, int proCount)
+    {
+    	system("cls");
+    
+    	cout<<endl<<endl<<"\t\tProduct MENU\n\n";
+    	cout<<"\n";
+    	cout<<"P.NO.\t\tNAME\t\tPRICE\n";
+    	
+    	cout<<"\n";
+    	
+    	
+    		cout<<pro.pro_id<<"\t\t"<<pro.product_name<<"\t\t"<<pro.product_price<<endl;
+    	
+    	
+    }
+     
+    void place_order(product pro)
+    {
+    	int order_arr[50],quan[50],c=0;
+    	float amt,damt,total=0;
+    	char ch='Y';
+    //	product_menu();
+    	cout<<"\n\n";
+    	cout<<"\n PLACE YOUR ORDER";
+    	cout<<"\n\n";
+    	do{
+    		cout<<"\n\nEnter The Product no: ";
+    		cin>>order_arr[c];
+    		cout<<"\nQuantity: ";
+    		cin>>quan[c];
+    		c++;
+    		cout<<"\nDo You Want To Order Another Product ? (y/n)";
+    		
+    		cin>>ch;
+    		}while(ch=='y' ||ch=='Y');
+    	cout<<"\n\nThank You...";
+    	getchar();
+    	system("cls");
+    	cout<<"\n\n********************************INVOICE************************\n";
+    	cout<<"\nPr No.\tPr Name\tQuantity \tPrice \tAmount \tAmount after discount\n";
+    	for(int x=0;x<=c;x++)
+    	{	
+    	    if(pro.pro_id==order_arr[x])
+    			{
+    				amt=pro.product_price*quan[x];
+    				damt=amt-(amt*pro.product_discount/100);
+    				cout<<"\n"<<order_arr[x]<<"\t"<<pro.product_name<<"\t"<<quan[x]<<"\t\t"<<pro.product_price<<"\t"<<amt<<"\t\t"<<damt;
+    				total+=damt;
+    			}
+    			
+    		
+    	
+    	cout<<"\n\n\t\t\t\t\tTOTAL = "<<total;
+    	getchar();
+    }
+     
+ }
+     
+    void admin_menu()
+    {
+    	system("cls");
+    	int option;
+    	//product pro[num];
+    	
+    	cout<<"\t============================================";
+    	cout<<"\n\tPress 1 to CREATE PRODUCT";
+    	cout<<"\n\tPress 2 to DISPLAY ALL PRODUCTS";
+        cout<<"\n\tPress 3 to MODIFY PRODUCT";
+        cout<<"\n\tPress 4 to INSERT PRODUCT";
+        cout<<"\n\tPress 5 to SEARCH PRODUCT";
+    	cout<<"\n\tPress 6 to DELETE PRODUCT";
+    	cout<<"\n\tPress 7 to GO BACK TO MAIN MENU";
+    	cout<<"\n\t===========================================";
+     
+    
+		cout<<"\n\n\tOption: ";
+    	cin>>option;
+    	switch(option)
+    	{
+    		case 1: system("cls");
+    				create_product(pro, num);
+    				break;
+    				
+    		case 2: 
+					show_product(pro, num);
+    				break;
+    				
+    	
+    	
+         	case 3: 
+		            edit_product(pro, num);
+    	        	break;
+    		
+        	case 4: 
+					insert_Product(pro,num);
+        	        break;
+        	case 5:
+			      search_productbyId(pro,num);
+			      search_productbyName(pro,num);
+				  break;       
+			case 6: 
+					//delete_product();
+    		        break;
+    				
+    		case 7: system("cls");
+    				break;
+    		
+    		default:
+			        admin_menu();
+    	}
+    }
+     
+     
+    int main(int argc, char *argv[])
+    {
+    	system("cls");
+    	system("color 07");
+      	cout<<"\n";
+      	cout<<"\n\t\WELCOME TO OUR SUPER MARKET\n";
+       	cout<<"\n";
+
+    	int option;
+    	
+    	for(;;)
+    	{
+     
+    		cout<<"\n\t***************************************\n";
+    		cout<<"\n\t1. CUSTOMER";
+    		cout<<"\n\t2. ADMINISTRATOR";
+    		cout<<"\n\t3. EXIT";
+    		cout<<"\n\t***************************************\n";
+    		
+    		cout<<"\n\tOption: ";
+    		cin>>option;
+    		
+    		switch(option)
+    		{
+    			case 1: system("cls");
+    					//place_order();
+    					getchar();
+    					break;
+    					
+    			case 2: admin_menu();
+    					break;
+    					
+    			case 3: 
+    					cout<<"\n\t-----------------\n";
+    					cout<<"\n\tGood Bye!";
+    					cout<<"\n\-------------------\n";
+    					exit(0);
+    			
+    			default :
+				        cout<<"Invalid Input...\n";
+    		}
+     
+    	}
+    }
